@@ -5,6 +5,7 @@ import pl.sda.micgeb.springrestapp.model.Car;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryCarRepository implements CarRepository {
@@ -58,5 +59,12 @@ public class InMemoryCarRepository implements CarRepository {
     @Override
     public Optional<Car> getCarByRegistrationNumber(String registrationNumber) {
         return Optional.ofNullable(carMap.get(registrationNumber));
+    }
+
+    @Override
+    public List<Car> getCarsByFuelType(String fuelType) {
+        return carMap.values().stream()
+                .filter(car -> fuelType.equals(car.getFuelType()))
+                .collect(Collectors.toList());
     }
 }

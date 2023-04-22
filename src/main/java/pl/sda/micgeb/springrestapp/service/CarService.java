@@ -22,4 +22,9 @@ public class CarService {
         Optional<Car> carByRegistrationNumber = carRepository.getCarByRegistrationNumber(registartionNumber);
         return carByRegistrationNumber.orElse(null);
     }
+
+    public List<Car> getCarsByFuelType(String fuelType) {
+        List<Car> carsByFuelType = carRepository.getCarsByFuelType(fuelType);
+        return carsByFuelType;
+    }
 }

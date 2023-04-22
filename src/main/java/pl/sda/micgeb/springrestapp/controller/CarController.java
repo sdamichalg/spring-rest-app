@@ -3,10 +3,7 @@ package pl.sda.micgeb.springrestapp.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.micgeb.springrestapp.model.Car;
 import pl.sda.micgeb.springrestapp.service.CarService;
 
@@ -30,8 +27,13 @@ public class CarController {
         if (carByRegistrationNumber != null) {
             return ResponseEntity.ok(carByRegistrationNumber);
         } else {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
+    }
 
+    @GetMapping("/fuel/{fuelType}")
+    public ResponseEntity<List<Car>> getCarsByFuelType(@PathVariable String fuelType) {
+        List<Car> carsByFuelType = carService.getCarsByFuelType(fuelType);
+        return ResponseEntity.ok(carsByFuelType);
     }
 }

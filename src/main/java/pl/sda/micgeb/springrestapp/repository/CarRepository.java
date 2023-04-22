@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface CarRepository {
     List<Car> getAllCars();
     Optional<Car> getCarByRegistrationNumber(String registrationNumber);
+
+    List<Car> getCarsByFuelType(String fuelType);
 }
