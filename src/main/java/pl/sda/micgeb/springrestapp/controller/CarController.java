@@ -49,4 +49,11 @@ public class CarController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PostMapping("/{registrationNumber}")
+    public ResponseEntity<List<Car>> createNewCar(@PathVariable String registrationNumber,
+                                                  @RequestBody Car newCar) {
+        List<Car> cars = carService.addNewCar(registrationNumber, newCar);
+        return ResponseEntity.ok(cars);
+    }
 }

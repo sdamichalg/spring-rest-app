@@ -10,4 +10,6 @@ public interface CarRepository {
     Optional<Car> getCarByRegistrationNumber(String registrationNumber);
 
     List<Car> getCarsByFuelType(String fuelType);
+
+    List<Car> addNewCar(String registrationNumber, Car newCar);
 }

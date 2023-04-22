@@ -35,7 +35,6 @@ public class CarService {
         Optional<Car> carByRegistrationNumber = carRepository.getCarByRegistrationNumber(registrationNumber);
         if (carByRegistrationNumber.isPresent()) {
             Car car = carByRegistrationNumber.get(); //Optional -> Car
-            car.setValue(newValue);
 
             return car;
         } else {
@@ -43,4 +42,9 @@ public class CarService {
             return null;
         }
     }
+
+    public List<Car> addNewCar(String registrationNumber, Car newCar) {
+        return carRepository.addNewCar(registrationNumber, newCar);
+    }
+
 }

@@ -67,4 +67,10 @@ public class InMemoryCarRepository implements CarRepository {
                 .filter(car -> fuelType.equals(car.getFuelType()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Car> addNewCar(String registrationNumber, Car newCar) {
+        carMap.put(registrationNumber, newCar);
+        return new ArrayList<>(carMap.values());
+    }
 }
