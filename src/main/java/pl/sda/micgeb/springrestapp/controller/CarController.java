@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.sda.micgeb.springrestapp.model.Car;
 import pl.sda.micgeb.springrestapp.service.CarService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -35,5 +36,17 @@ public class CarController {
     public ResponseEntity<List<Car>> getCarsByFuelType(@PathVariable String fuelType) {
         List<Car> carsByFuelType = carService.getCarsByFuelType(fuelType);
         return ResponseEntity.ok(carsByFuelType);
+    }
+
+    @PatchMapping("update/{registrationNumber}")
+    public ResponseEntity<Car> updateCarValue(@PathVariable String registrationNumber,
+                                              @RequestBody BigDecimal newValue) {
+        Car car = carService.updateCarWithNewValue(registrationNumber, newValue);
+
+        if (car != null) {
+            return ResponseEntity.ok(car);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
