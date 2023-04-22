@@ -6,6 +6,7 @@ import pl.sda.micgeb.springrestapp.model.Car;
 import pl.sda.micgeb.springrestapp.repository.CarRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,5 +16,10 @@ public class CarService {
 
     public List<Car> getAllCars() {
         return carRepository.getAllCars();
+    }
+
+    public Car getCarByRegistrationNumber(String registartionNumber) {
+        Optional<Car> carByRegistrationNumber = carRepository.getCarByRegistrationNumber(registartionNumber);
+        return carByRegistrationNumber.orElse(null);
     }
 }

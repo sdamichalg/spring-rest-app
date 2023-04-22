@@ -26,4 +26,9 @@ public class DummyController {
     public ResponseEntity<String> delete() {
         return ResponseEntity.ok("Hello from DELETE method");
     }
+
+    @GetMapping("/header")
+    public ResponseEntity<String> showHeader(@RequestHeader("my-header") String myHeader) {
+        return ResponseEntity.ok("Hello from my api with header: " + myHeader);
+    }
 }
