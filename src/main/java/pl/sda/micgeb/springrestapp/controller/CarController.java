@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.sda.micgeb.springrestapp.model.Car;
 import pl.sda.micgeb.springrestapp.service.CarService;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class CarController {
 
     @PostMapping("/{registrationNumber}")
     public ResponseEntity<List<Car>> createNewCar(@PathVariable String registrationNumber,
-                                                  @RequestBody Car newCar) {
+                                                  @RequestBody @Valid Car newCar) {
         List<Car> cars = carService.addNewCar(registrationNumber, newCar);
         return ResponseEntity.ok(cars);
     }
