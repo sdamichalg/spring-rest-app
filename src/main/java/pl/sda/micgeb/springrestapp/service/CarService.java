@@ -2,7 +2,6 @@ package pl.sda.micgeb.springrestapp.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 import pl.sda.micgeb.springrestapp.model.Car;
 import pl.sda.micgeb.springrestapp.repository.CarRepository;
 
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 @Slf4j
 public class CarService {

@@ -1,13 +1,12 @@
 package pl.sda.micgeb.springrestapp.repository;
 
-import org.springframework.stereotype.Repository;
 import pl.sda.micgeb.springrestapp.model.Car;
 
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Repository
+//@Repository
 public class InMemoryCarRepository implements CarRepository {
 
     private static final Map<String, Car> carMap;
