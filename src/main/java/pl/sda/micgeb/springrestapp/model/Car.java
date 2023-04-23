@@ -4,11 +4,12 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Builder
 @AllArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
+@Data
+@Builder
+@RequiredArgsConstructor
 public class Car {
     private String model;
     private String brand;
