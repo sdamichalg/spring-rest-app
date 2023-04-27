@@ -1,6 +1,7 @@
 package pl.sda.micgeb.springrestapp.repository;
 
 import pl.sda.micgeb.springrestapp.exceptions.ExistingCarException;
+import pl.sda.micgeb.springrestapp.exceptions.NoSuchFuelTypeException;
 import pl.sda.micgeb.springrestapp.model.Car;
 
 import java.math.BigDecimal;
@@ -63,9 +64,15 @@ public class InMemoryCarRepository implements CarRepository {
 
     @Override
     public List<Car> getCarsByFuelType(String fuelType) {
-        return carMap.values().stream()
+        List<Car> cars = carMap.values().stream()
                 .filter(car -> fuelType.equals(car.getFuelType()))
                 .collect(Collectors.toList());
+        if (cars.isEmpty()) {
+            throw new NoSuchFuelTypeException(fuelType);
+        }
+        return cars;
+
+
     }
 
     @Override
