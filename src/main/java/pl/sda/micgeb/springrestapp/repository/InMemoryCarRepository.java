@@ -1,5 +1,6 @@
 package pl.sda.micgeb.springrestapp.repository;
 
+import pl.sda.micgeb.springrestapp.exceptions.ExistingCarException;
 import pl.sda.micgeb.springrestapp.model.Car;
 
 import java.math.BigDecimal;
@@ -69,7 +70,14 @@ public class InMemoryCarRepository implements CarRepository {
 
     @Override
     public List<Car> addNewCar(String registrationNumber, Car newCar) {
+        if (isCarAlreadyDefined(registrationNumber)) {
+            throw new ExistingCarException(registrationNumber);
+        }
         carMap.put(registrationNumber, newCar);
         return new ArrayList<>(carMap.values());
+    }
+
+    private static boolean isCarAlreadyDefined(String registrationNumber) {
+        return carMap.containsKey(registrationNumber);
     }
 }
